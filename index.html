@@ -22,37 +22,40 @@
          text-align: center;
         }
          
+        
         .container {
           display: flex; 
           justify-content: center; 
           align-items: center;
-          flex-wrap: nowrap;
-          flex-direction: column; 
-         }
+          flex-direction: column;
+          flex-wrap: wrap;
+        }
         
          #character-select {
           width: 300px;
          }
- 
-      
- 
-    
+
+         .card {
+          width: fit-content;
+         }
+
+        
      </style>
  
+ <div class="container">
 
-    <div class="container">
         <h1 class="my-5">Rick and Morty Search</h1>
-        <div class="row">
-          <div class="col-md-4">
-             <div class="cardpersonagem">
-            <select id="character-select" class="form-select" aria-label="Selecione um personagem">
-              <option selected disabled>Sobre quem você quer saber?</option>
-            </select>
+        
+          <div class="row">
+            <div class="col-md-4 width: 300px">
+              <select id="character-select" class="form-select">
+                <option selected disabled>Sobre quem você quer saber?</option>
+              </select>
             </div>
           </div>
-        </div>
-        <div id="character-cards" class="row row-cols-1 row-cols-md-3 g-4 justify-content-center"></div>
-      </div>
+          <div id="character-cards" class="row row-cols-1 row-cols-md-3 g-4 justify-content-center"></div>
+    
+  </div>
     
 
 
@@ -73,6 +76,7 @@
       }
     }
 
+
         async function displayCharacters() {
         const characters = await fetchCharacters();
         const characterSelectElement = document.getElementById('character-select');
@@ -88,7 +92,7 @@
         characterSelectElement.addEventListener('change', () => {
         const selectedCharacterId = characterSelectElement.value;
         const selectedCharacter = characters.find(character => character.id === parseInt(selectedCharacterId));
-        characterCardsElement.innerHTML = ''; // Limpa os cards anteriores
+        characterCardsElement.innerHTML = ''; 
 
         const cardElement = document.createElement('div');
         cardElement.classList.add('col');
@@ -107,12 +111,8 @@
       });
     }
 
-    
     displayCharacters();
 
-
-
-        
     </script>
 
 </body>
